@@ -4,7 +4,7 @@ A weather app that fetches live data from the [OpenWeatherMap API](https://openw
 
 ## Live Demo
 
-https://samcodex-405.github.io/iyf-s12-week-06-samcodex-405/
+https://samcodex-405.github.io/iyf-s12-week-06-Samcodex-405/
 
 
 ## Features
