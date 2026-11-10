@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main class="weather-app">
+        <h1>Weather Dashboard</h1>
+
+        <form id="search-form">
+            <label for="city-input" class="sr-only">City name</label>
+            <input type="text" id="city-input" placeholder="Enter a city, e.g. Nairobi" autocomplete="off" required>
+            <button type="submit" id="search-btn">Search</button>
+        </form>
+
+        <div id="loading" class="hidden" role="status">Loading…</div>
+        <div id="error" class="hidden error" role="alert"></div>
+
+        <section id="weather-display" class="hidden" aria-live="polite">
+            <div class="weather-main">
+                <h2 id="city-name"></h2>
+                <img id="weather-icon" src="" alt="Weather icon" width="100" height="100">
+                <p id="temperature"></p>
+                <p id="description"></p>
+            </div>
+
+            <div class="weather-details">
+                <div class="detail"><span>Feels like</span><span id="feels-like"></span></div>
+                <div class="detail"><span>Humidity</span><span id="humidity"></span></div>
+                <div class="detail"><span>Wind</span><span id="wind"></span></div>
+                <div class="detail"><span>Pressure</span><span id="pressure"></span></div>
+            </div>
+        </section>
+
+        <section id="recent-searches">
+            <h3>Recent searches</h3>
+            <ul id="search-history"></ul>
+        </section>
+    </main>
+
+    <script src="config.js"></script>   <!-- defines API_KEY; git-ignored -->
+    <script src="app.js"></script>
+</body>
+</html>
