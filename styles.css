@@ -1,0 +1,149 @@
+:root {
+    /* Palette */
+    --burgundy: #570B3C;
+    --berry-purple: #6D124B;
+    --dark-wine: #3C0A25;
+
+    --soft-mint: #B4E3D1;
+    --seafoam: #A2D7C2;
+    --pale-mint: #DFEFE3;
+    --muted-teal: #47806F;
+
+    --champagne: #D5C8B5;
+
+    /* Semantic tokens */
+    --ink: var(--dark-wine);
+    --ink-soft: var(--berry-purple);
+    --paper: #ffffff;
+    --accent: var(--burgundy);
+    --accent-dark: var(--dark-wine);
+    --danger-bg: var(--champagne);
+    --danger: var(--dark-wine);
+    --sky-a: var(--soft-mint);
+    --sky-b: var(--pale-mint);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background: linear-gradient(180deg, var(--sky-a), var(--sky-b));
+    transition: background 0.6s;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+/* Bonus: weather-driven backgrounds */
+body[data-weather="clear"]  { --sky-a: var(--champagne); --sky-b: var(--pale-mint); }
+body[data-weather="clouds"] { --sky-a: var(--seafoam); --sky-b: var(--pale-mint); }
+body[data-weather="rain"],
+body[data-weather="drizzle"] { --sky-a: var(--muted-teal); --sky-b: var(--soft-mint); }
+body[data-weather="thunderstorm"] { --sky-a: var(--berry-purple); --sky-b: var(--champagne); }
+body[data-weather="snow"]   { --sky-a: var(--pale-mint); --sky-b: #ffffff; }
+
+.weather-app { width: 100%; max-width: 460px; }
+
+h1 { font-size: 2rem; margin: 0 0 1.25rem; letter-spacing: -0.02em; }
+
+#search-form { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
+
+input[type="text"] {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+input[type="text"]:focus { outline: none; border-color: var(--accent); }
+
+button[type="submit"] {
+    padding: 0 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 0;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover { background: var(--accent-dark); }
+button:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+.hidden { display: none !important; }
+
+#loading { padding: 1rem; text-align: center; font-weight: 600; color: var(--ink-soft); }
+
+.error {
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    background: var(--danger-bg);
+    color: var(--danger);
+    font-weight: 600;
+}
+
+#weather-display {
+    background: var(--paper);
+    border-radius: 17px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(60, 10, 37, 0.15);
+}
+
+.weather-main { text-align: center; }
+.weather-main h2 { margin: 0; font-size: 1.5rem; }
+.weather-main img { display: block; margin: 0 auto; }
+#temperature { margin: 0; font-size: 4rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; color: var(--burgundy); }
+#description { margin: 0.5rem 0 0; text-transform: capitalize; color: var(--ink-soft); }
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    background: var(--pale-mint);
+}
+
+.detail span:first-child { font-size: 0.85rem; color: var(--ink-soft); }
+.detail span:last-child { font-size: 1.15rem; font-weight: 600; }
+
+#recent-searches { margin-top: 1.75rem; }
+#recent-searches h3 { margin: 0 0 0.6rem; font-size: 1rem; color: var(--ink-soft); }
+
+#search-history { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+#search-history .empty { color: var(--ink-soft); font-size: 0.9rem; }
+
+#search-history button {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--muted-teal);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+#search-history button:hover { background: var(--paper); border-color: var(--burgundy); }
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+    #temperature { font-size: 3.2rem; }
+}
